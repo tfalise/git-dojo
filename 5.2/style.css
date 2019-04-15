@@ -1,0 +1,36 @@
+.main > .box {
+    background: #eee;
+    margin-bottom: .75rem;
+}
+
+.main .box h1 {
+    font-size: 1.2em;
+    font-weight: bold;
+    padding-left: .5rem;
+    background: #ddd;
+    border-bottom: 1px solid #b91400;
+}
+
+.main > .box > p {
+    padding-left: .5rem;
+    margin-bottom: .25rem;
+}
+
+p.new {
+    font-weight: bold;
+    color: blue;
+}
+
+.main .box h1::before {
+    content: "\25C8 ";
+    color: #b91400;
+    font-weight: bold;
+    margin-right: .25rem;
+}
+
+.main .box h1::after {
+    content: " \25C8";
+    color: #b91400;
+    font-weight: bold;
+    margin-left: .25rem;
+}

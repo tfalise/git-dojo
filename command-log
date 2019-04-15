@@ -1,0 +1,213 @@
+git init git-coding-dojo
+cd git-coding-dojo
+git status
+# Explain status of repository
+> Copy starting files
+git status
+git add index.html
+git add style.css
+# Show index.html content
+git status
+git commit
+> Enter commit message
+git status
+git log --all --oneline --graph
+
+> Copy 1.1 files
+# Show index.html new content
+git status
+git add index.html
+git commit -m "Add 1.1 paragraph"
+git status
+git log --all --oneline --graph
+
+> Copy 1.2 files
+# Show index.html new content
+git status
+git add .
+git status
+git commit -m "Add 1.2 text"
+# Note commit ids
+
+> Copy 1.3 files
+# Show index.html content
+git status
+git add .
+git commit --amend
+git log --all --oneline --graph
+# Explain amend with different commit ID
+
+git branch --list --verbose
+git branch develop
+git branch -lv
+git checkout develop
+git branch -lv
+> Copy 2.1 files
+# Show index.html new content
+git commit -a -m "Add 2.1 paragraph"
+git branch -lv
+# Show difference on two branches
+git log --all --oneline --graph
+git checkout master
+# Show that master does not have changes
+
+git merge develop
+# Explain fast forward
+git branch -lv
+# Show that both branches have the same commit after merge
+
+git checkout develop
+> Copy 2.2 files
+# Show index.html new content
+git commit -m "Add 2.2 paragraph on develop"
+git branch -lv
+git checkout master
+> Copy 2.3 files
+# Show index.html new content
+git commit -m "Add 2.3 paragraph on master"
+git branch -lv
+git log --all --oneline --graph
+git merge develop
+# Explain conflict and merge
+git status
+> Copy 2.4 files
+# Show resolution of conflict
+git add index.html
+git status
+# Show that merge has no more conflicts
+git commit
+# Leave commit message unchanged
+git log --all --oneline --graph
+# Show diverging branches
+git branch -d develop
+
+> Open github
+> Create new repository on github
+> Copy url of repository
+git remote add origin @url
+git push --set-upstream origin master
+# Show repository on github
+git branch -alv
+# Explain remote branch reference existing in local repo
+
+> Copy files from 3.1
+# Show index.html new content
+git commit -a -m "Add 3.1 paragraph"
+git status
+# Show status of local branch compared to remote tracked branch
+git branch -alv
+# Show status of branch on github
+git log --all --oneline --graph
+git push origin master
+git branch -alv
+
+> Create develop branch on github
+git branch -alv
+# Explain why branch is not visible 
+git fetch origin
+# Show that fetch found new branch
+git branch -alv
+git checkout develop
+# Explain that checkout creates a new local branch based on remote
+git branch -lvv 
+# Show tracked branch information
+
+cd ..
+git clone @url bob-dojo
+cd bob-dojo
+git config user.name "Bob"
+git config user.email "bob@dojo"
+git clone @url alice-dojo
+cd alice-dojo
+git config user.name "Alice"
+git config user.email "alice@dojo"
+
+cd ..\bob-dojo\
+git checkout develop
+git checkout -b feature/bob
+# Explain -b option automatically creates branch
+# Explain feature branches
+git branch -lvv
+> Copy 4.1 files
+git commit -a -m "Add bob content in a new paragraph"
+git push --set-upstream origin feature/bob
+git branch -lvv
+
+cd ..\alice-dojo\
+git checkout develop
+git checkout -b feature/alice
+git fetch origin
+git log --all --oneline --graph
+# Show branch from bob available on the remote
+> Copy 4.2 files
+# Show CSS update
+git commit -a -m "Update CSS style"
+git push --set-upstream origin feature/alice
+git log --all --oneline --graph
+# Show differences between bob and alice modifications on the remote
+# Show branches on github
+
+# On github, create pull request for feature/alice branch
+# Explain pull request mechanism (code review, CI, build, quality checks, ...)
+# Merge pull request with default option
+# Delete branch
+git fetch
+git branch -alvv
+# Explain that the fetch will not delete local references of remote branches that were deleted
+git fetch --prune
+git branch -alvv
+git checkout develop
+git merge origin/develop
+# Explain the fast forward
+git branch -d feature/alice
+git log --all --oneline --graph
+# Show both branches from bob and alice that was merged in master
+
+cd ..\bob-dojo\
+# On github, create pull request for feature/bob on develop
+# Merge pull request with squash
+# Delete branch
+git checkout develop
+git pull origin
+git log --all --oneline --graph
+# Explain difference with pull
+git branch -d feature/bob
+# Show the error (difference with the squash merge)
+git branch -D feature/bob
+git log --all --oneline --graph
+
+# On github, create release/1.0 branch from develop
+cd ..\alice-dojo\
+git fetch origin
+git checkout release/1.0
+cd..\bob-dojo\
+git fetch origin
+git checkout release/1.0
+> Copy files from 5.1
+git commit -a -m "Add last content for 1.0 release"
+git push origin
+
+cd ..\alice-dojo\
+> Copy file from 5.2
+git commit -a -m "Last CSS update for 1.0 release"
+git log --all --oneline --graph
+# Explain diverging commits on the same branch and no pull request
+git push origin 
+# Explain rejected push
+git rebase origin/release/1.0
+git log --all --oneline --graph
+git push origin
+
+git checkout master
+git branch hotfix/color
+git checkout hotfix/color
+> Copy files from 6.1
+git commit -a -m "Update colors to use new theme"
+git checkout master
+git log --all --oneline --graph (ou git log --branches --oneline --graph)
+# Show commit for hotfix that should be integrated in next release
+# Explain difficulty of merge
+git checkout release/1.0
+git cherry-pick @commitId
+git log --all --oneline --graph 
+# Explain cherry pick on the release branch

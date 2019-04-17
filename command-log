@@ -59,12 +59,12 @@ git branch -lv
 git checkout develop
 > Copy 2.2 files
 # Show index.html new content
-git commit -m "Add 2.2 paragraph on develop"
+git commit -a -m "Add 2.2 paragraph on develop"
 git branch -lv
 git checkout master
 > Copy 2.3 files
 # Show index.html new content
-git commit -m "Add 2.3 paragraph on master"
+git commit -a -m "Add 2.3 paragraph on master"
 git branch -lv
 git log --all --oneline --graph
 git merge develop
